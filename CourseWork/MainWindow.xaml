@@ -1,0 +1,106 @@
+﻿<Window x:Class="CourseWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork"
+      
+        Title="MusicPlayer" Height="558" Width="579" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="Resources/Thegirltyler-Brand-Camp-Guitar-Music.ico">
+    <Grid Margin="0,0,-6,-2" Background="#FFD6DBE9" Height="532" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="playlist" PreviewKeyDown="listbox_PreviewKeyDown" HorizontalAlignment="Left" Height="492" Margin="289,10,0,0" VerticalAlignment="Top" Width="270" MouseDoubleClick="btnPlay_Click" Background="#FFD6DBE9" BorderBrush="#FF828790" FontWeight="Bold" Focusable="False" KeyboardNavigation.DirectionalNavigation="None"/>
+        <!-- **************************************************************************************************************-->
+        <Button x:Name="btnPlay" HorizontalAlignment="Left" Margin="84,392,0,0" VerticalAlignment="Top" Width="50"  Click="btnPlay_Click" Height="50" ToolTip="Play" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/media_play.png"/>
+            </Button.OpacityMask>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+            <Image Source="Resources\media_play.png"></Image>
+        </Button>
+
+        <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="16,446,0,0" VerticalAlignment="Top" Width="50" Height="50" Click="btnStop_Click" ToolTip="Stop" Focusable="False" >
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/media_stop.png"/>
+            </Button.OpacityMask>
+            <Image Source="Resources\media_stop.png"></Image>
+        </Button>
+
+        <Button x:Name="btnEject" HorizontalAlignment="Left" Margin="83,446,0,0" VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.32,0.773" Click="btnEject_Click" ToolTip="Open File" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/file_green.png"/>
+            </Button.OpacityMask>
+            <Image Source="Resources\file_green.png"></Image>
+        </Button>
+        <!--***************************************************************************************************************-->
+        <Slider x:Name="slTime" IsMoveToPointEnabled="True" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="250" ValueChanged="slTime_ValueChanged" ToolTip="Current Position" Height="22" Focusable="False"/>
+
+        <Slider x:Name="slVol" IsMoveToPointEnabled="True" HorizontalAlignment="Left" Margin="155,266,0,0" VerticalAlignment="Top" Width="105" Value="100" UseLayoutRounding="False" Maximum="100" ValueChanged="slVol_ValueChanged" ToolTip="Volume" Height="22" Focusable="False"/>
+
+        <Label x:Name="labelLefttime" Content="00:00:00" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontWeight="Bold" Height="26" Width="73"/>
+
+        <Label x:Name="labelRightTime" Content="          00:00:00" HorizontalAlignment="Left" Margin="160,334,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontWeight="Bold" Height="26" Width="100" HorizontalContentAlignment="Right"/>
+        <!--***************************************************************************************************************-->
+        <Button x:Name="btnPause"  HorizontalAlignment="Left" Height="50" Margin="149,392,0,0" VerticalAlignment="Top" Width="50" Click="btnPause_Click" ToolTip="Pause" Focusable="False" >
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/media_pause.png"/>
+            </Button.OpacityMask>
+            <Image Source=" Resources\media_pause.png"></Image>
+        </Button>
+
+        <Button x:Name="btn_EjectFolder" HorizontalAlignment="Left" Margin="151,446,0,0" VerticalAlignment="Top" Width="50" Height="50" Click="btn_EjectFolder_Click" ToolTip="Open Folder" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/folder_grey.png"/>
+            </Button.OpacityMask>
+            <Image Source="Resources\folder_grey.png"></Image>
+        </Button>
+
+        <Button x:Name="btnPrev"  HorizontalAlignment="Left" Height="50"  Margin="16,392,0,0" VerticalAlignment="Top" Width="50" Click="btnPrev_Click" ToolTip="Previous" Background="{x:Null}" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/media_next.png"/>
+            </Button.OpacityMask>
+            <Image Source="Resources\media_next.png"/>
+        </Button>
+        <!--***************************************************************************************************************-->
+        <Button x:Name="btnNext"  HorizontalAlignment="Left" Margin="209,392,0,0"  VerticalAlignment="Top" Width="50" Height="50" RenderTransformOrigin="0.5,0.5" Click="btnNext_Click" ToolTip="Next" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/media_next.png"/>
+            </Button.OpacityMask>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="180"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Image Source="Resources\media_next.png" Width="44" Height="44" RenderTransformOrigin="0,0"/>
+        </Button>
+        <!--***************************************************************************************************************-->
+        <Label x:Name="labelCurrentPlayingName" Content="" HorizontalAlignment="Left" Margin="10,293,0,0" VerticalAlignment="Top" Height="41" Width="250" BorderThickness="1" BorderBrush="#FF828790" FontWeight="Bold"/>
+        <Label x:Name="labelNowPlaying" Content="" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" Width="124" FontWeight="Bold" Height="26"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="250" Margin="10,7,0,0" VerticalAlignment="Top" Width="250" MinHeight="250" MinWidth="250" MaxWidth="250" MaxHeight="248" AllowDrop="True" Panel.ZIndex="2" Source="Resources\nocover.png"/>
+        <Button x:Name="btnDelete"  HorizontalAlignment="Left" Margin="210,447,0,0" VerticalAlignment="Top" Width="50" Height="50" ToolTip="Delete Selected Song" Click="btnDelete_Click" Focusable="False">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Resources/close.png"/>
+            </Button.OpacityMask>
+            <Image Source="Resources\close.png"/>
+        </Button>
+        <Button x:Name="btnContacts" Content="About" HorizontalAlignment="Left" Margin="210,497,0,0" VerticalAlignment="Top" Width="50" Height="15" ToolTip="About" Click="btnContatcs_Click" FontSize="8" Focusable="False">
+
+
+        </Button>
+
+
+        <!--***************************************************************************************************************-->
+    </Grid>
+
+</Window>
